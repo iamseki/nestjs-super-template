@@ -2,11 +2,11 @@
 
 <p align="center">The main purpose of this project its to demonstrate a real world complex <strong>nestjs</strong> project with a lot of technologies involved.</p>
 
-## Proposal
+## Proposal :book:
 
 We're going to solve a smart city problem, building the whole API that allow us to control and collect data about citizens and theirs smart home devices.
 
-## Modeling
+## Modeling :thinking:
 
 ### FR's
   - The citizen can live wherever the place in the earth planet(we're gonna to consider just the country).
@@ -25,3 +25,6 @@ We're going to solve a smart city problem, building the whole API that allow us 
   - Anyone can see the main dashboard related to smart home information.
   - Devices can transmit information in realtime to API.
   - Devices can be controlled.
+
+## Deployment :earth_americas:
+
