@@ -33,6 +33,7 @@ We're going to solve a smart city problem, building the whole API that allow us 
 
 - Using a local kubernetes cluster with `minikube start`
 - Helpers:
+  - minikube addons enable ingress
   - eval $(minikube docker-env)
     - docker pull postgres:alpine mongo
     - docker build -t nest-app .
