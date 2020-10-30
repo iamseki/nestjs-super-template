@@ -1,11 +1,11 @@
 import { ConnectionOptions } from 'typeorm';
 
-const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
+const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE } = process.env;
 
 const config: ConnectionOptions = {
   type: 'postgres',
   host: DB_HOST,
-  port: Number(DB_PORT),
+  port: 5432,
   username: DB_USERNAME,
   password: DB_PASSWORD,
   database: DB_DATABASE || 'grades-api',

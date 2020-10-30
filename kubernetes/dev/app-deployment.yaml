@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nest-app
+  labels:
+    environment: dev
+    app: nest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nest-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: nest-app
+        version: "1"
+    spec:
+      containers:
+        - env:
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: pg-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-credentials
+                  key: password
+            - name: DB_DATABASE
+              value: smart
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_HOST
+              value: pgsql-service
+            - name: MONGO_URI
+              value: mongodb://mongodb-service/smart
+          image: nest-app
+          imagePullPolicy: Never
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /hc
+              port: 3333
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 3
+          name: nest-app
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
+      imagePullSecrets:
+        - name: registry-credential
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always

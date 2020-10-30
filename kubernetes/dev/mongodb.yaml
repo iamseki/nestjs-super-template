@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nest-mongo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: nest-mongo
+    spec:
+      containers:
+        - env:
+            - name: MONGODB_DATABASE
+              value: smart
+          image: mongo
+          imagePullPolicy: Never
+          name: mongodb
+          resources:
+            limits:
+              cpu: 300m
+              memory: 256Mi
+            requests:
+              cpu: 200m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+   name: mongodb-service
+spec:
+   type: ClusterIP
+   ports:
+   - protocol: TCP
+     port: 27017
+     targetPort: 27017

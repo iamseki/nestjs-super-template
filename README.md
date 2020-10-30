@@ -14,6 +14,7 @@ We're going to solve a smart city problem, building the whole API that allow us 
   - Its nicelly to have the real time information about some devices.
 
 ### NFR's
+  - `JWT` Auth to almost all routes.
   - `PGSQL` to persist users, countries and devices.
   - `MongoDB` to persist real data about devices.
   - `Nestjs` A Nodejs framework to develop our API.
@@ -28,3 +29,13 @@ We're going to solve a smart city problem, building the whole API that allow us 
 
 ## Deployment :earth_americas:
 
+### Development environment
+
+- Using a local kubernetes cluster with `minikube start`
+- Helpers:
+  - eval $(minikube docker-env)
+    - docker pull postgres:alpine mongo
+    - docker build -t nest-app .
+  - kubectl config get-contexts
+  - kubectl config use-context minikube
+  - kubectl config set-context --current --namespace namespaceX

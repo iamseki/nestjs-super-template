@@ -19,4 +19,9 @@ export class AppController {
   getProfile(@Request() req) {
     return req.user;
   }
+
+  @Get('hc')
+  healthCheck() {
+    return { health: "ok"}
+  }
 }
